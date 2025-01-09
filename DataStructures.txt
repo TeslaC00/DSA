@@ -1,0 +1,29 @@
+Arrays: Collections of elements, all of the same type, accessible by index.
+
+Linked Lists: Sequences of elements where each element points to the next.
+
+Stacks: Last-in, first-out (LIFO) collections.
+
+Queues: First-in, first-out (FIFO) collections.
+
+Hash Tables/Hash Maps: Key-value pairs for efficient data retrieval.
+
+Heaps: Binary trees used to implement priority queues.
+
+Trees: Hierarchical structures with a root element and child elements.
+
+Binary Search Trees (BSTs): Trees where each node has at most two children, with left children being lesser and right children greater.
+
+Graphs: Collections of nodes (or vertices) connected by edges.
+
+Sets: Collections of unique elements.
+
+Tries: Tree-like structures used for storing dynamic sets or associative arrays.
+
+Dictionaries: Key-value pairs similar to hash tables but often with more advanced functionality.
+
+Deques: Double-ended queues allowing insertion and removal from both ends.
+
+Priority Queues: Queues where each element has a priority, and higher-priority elements are dequeued before lower-priority ones.
+
+Matrices: Two-dimensional arrays used for mathematical computations and image data.
