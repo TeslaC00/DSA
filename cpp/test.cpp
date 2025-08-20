@@ -1,8 +1,13 @@
 #include "LinkedList.hpp"
 #include <iostream>
+#include "leetcode/q4.cpp"
 
 int main()
 {
+	return 0;
+}
+
+static void linkedListTest() {
 	LinkedList list;
 	std::cout << "List size when empty " << list.size() << " \n";
 	std::cout << "List isEmpty when empty " << list.isEmpty() << " \n";
@@ -18,6 +23,10 @@ int main()
 	list.removeValue(100);
 	std::cout << "List contains when element is absent " << std::boolalpha << list.contains(100) << " \n";
 	list.print();
+}
 
-	return 0;
+static void q4() {
+	Solution sol;
+	double median = sol.findMedianSortedArrays({ 1,2 }, { 3,4 });
+	std::cout << median << std::endl;
 }
