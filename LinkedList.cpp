@@ -1,6 +1,10 @@
 #include "LinkedList.hpp"
 #include <iostream>
 
+// TODO: make this list doubly and add object type support
+// TODO: modify index out of bound error to tell index and size of list
+// TODO: use for loop instead of while
+
 int LinkedList::size() const
 {
 	return m_size;
@@ -91,6 +95,7 @@ void LinkedList::removeFirst()
 	}
 
 	m_head = m_head->m_next;
+	// FIX: use remove node directly instead of remove last
 	removeLast();
 }
 
@@ -191,6 +196,136 @@ bool LinkedList::contains(int value) const
 	return indexOf(value) != -1;
 }
 
+// FIX: better return value for this function as -1 is not expressive enough
+int LinkedList::getFirst() const
+{
+	if (isEmpty())
+	{
+		return -1;
+	}
+	return m_head->m_data;
+}
+
+int LinkedList::getLast() const
+{
+	return getAt(m_size - 1);
+}
+
+// FIX: better return value for this function as -1 is not expressive enough
+int LinkedList::getAt(int index) const
+{
+	if (isEmpty())
+	{
+		return -1;
+	}
+
+	if (index<0 || index > m_size)
+	{
+		throw std::out_of_range("Index below 0 or more than size of list are not Allowed");
+	}
+
+	Node* current = m_head;
+	for (int i = 0; i < index; i++)
+	{
+		current = current->m_next;
+	}
+	return current->m_data;
+}
+
+std::vector<int> LinkedList::findAllOccurrences(int value) const
+{
+	if (isEmpty())
+	{
+		return std::vector<int>(0);
+	}
+
+	std::vector<int> indexes(0);
+	Node* current = m_head;
+	for (int i = 0; i < m_size; i++)
+	{
+		if (current->m_data == value)
+		{
+			indexes.push_back(i);
+		}
+	}
+
+	return indexes;
+}
+
+void LinkedList::swap(int value1, int value2)
+{
+	if (isEmpty())
+	{
+		return;
+	}
+
+	int index1 = indexOf(value1);
+	int index2 = indexOf(value2);
+
+	if (index1 == -1 || index2 == -1)
+	{
+		return;
+	}
+
+	Node* current = m_head;
+	int smallIndex = 0, bigIndex = 0;
+
+	if (value1 >= value2)
+	{
+		smallIndex = value2;
+		bigIndex = value1;
+	}
+	else
+	{
+		smallIndex = value1;
+		bigIndex = value2;
+	}
+
+	Node* swap = new Node();
+	for (int i = 0; i <= bigIndex; i++)
+	{
+		if (i == smallIndex)
+		{
+			swap = current;
+		}
+		current = current->m_next;
+	}
+
+	int tempData = current->m_data;
+	current->m_data = swap->m_data;
+	swap->m_data = tempData;
+}
+
+void LinkedList::reverse()
+{
+	// TODO: Implement this function
+}
+
+void LinkedList::sort()
+{
+	// TODO: Implement this function
+}
+
+std::vector<int> LinkedList::toArray() const
+{
+	if (isEmpty())
+	{
+		std::vector<int>();
+	}
+
+	std::vector<int> result;
+	result.reserve(m_size);
+
+	Node* current = m_head;
+	for (int i = 0; i < m_size; i++)
+	{
+		result.emplace_back(current->m_data);
+		current = current->m_next;
+	}
+
+	return result;
+}
+
 void LinkedList::removeNode(Node* node)
 {
 	if (node == nullptr)
@@ -240,4 +375,9 @@ void LinkedList::print() const
 		currentNode = currentNode->m_next;
 	}
 	std::cout << " END! \n";
+}
+
+void LinkedList::printReverse() const
+{
+	// TODO: Implement this function
 }

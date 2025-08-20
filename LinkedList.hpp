@@ -41,8 +41,8 @@ public:
 	int getFirst() const;
 	int getLast() const;
 	int getAt(int index) const;
-	std::vector<int> findAll(int value) const;
-	void swap(int index1, int index2);
+	std::vector<int> findAllOccurrences(int value) const;
+	void swap(int value1, int value2);
 	void reverse();
 	void sort();
 	std::vector<int> toArray() const;
