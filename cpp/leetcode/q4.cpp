@@ -1,5 +1,6 @@
 #include <stack>
 #include <Vector>
+#include <iostream>
 
 class Solution {
 public:
@@ -30,5 +31,11 @@ public:
 		if (totalSize % 2 == 0) median = (median + merged.top()) * 0.5;
 
 		return median;
+	}
+
+	static void test() {
+		Solution sol;
+		double median = sol.findMedianSortedArrays({ 1,2 }, { 3,4 });
+		std::cout << median << std::endl;
 	}
 };
