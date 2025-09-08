@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <utility>
 
 class Solution {
 public:
@@ -15,51 +16,37 @@ public:
 	Input: s = "cbbd"
 	Output: "bb"
 	*/
-	//TODO: optimize this solution
-	bool isPalindrome(int left, int right, const std::string& s)
+	std::pair<int, int> expandAroundCentre(const std::string& s, int left, int right)
 	{
-		while (left <= right)
+		while ((left - 1 >= 0) && (right + 1 < s.length()) && s[right + 1] == s[left - 1])
 		{
-			if (s[left++] != s[right--])
-				return false;
+			left--; right++;
 		}
-		return true;
+		int size = right - left + 1;
+		return std::make_pair(left, size);
 	}
 
 	std::string longestPalindrome(std::string s) {
-		std::string maxPalindrome;
+		int startIdx = 0, maxSize = 0;
 		for (int i = 0; i < s.length(); i++)
 		{
-			int left = i, right = i;
-			while (true)
+			std::pair<int, int> oddPair = expandAroundCentre(s, i, i);
+
+			if (s[i] == s[i + 1])
 			{
-				if ((left - 1 >= 0) && (right + 1 < s.length()) && (s[right + 1] == s[left - 1]))
-				{
-					left--; right++; continue;
-				}
-				else if ((left - 1 >= 0) && (s[left - 1] == s[right]))
-				{
-					if (isPalindrome(left - 1, right, s))
-					{
-						left--; continue;
-					}
-				}
-				else if ((right + 1 < s.length()) && (s[right + 1] == s[left]))
-				{
-					if (isPalindrome(left, right + 1, s))
-					{
-						right++; continue;
-					}
-				}
-				break;
+				std::pair<int, int> evenPair = expandAroundCentre(s, i, i + 1);
+				if (oddPair.second < evenPair.second)
+					oddPair = evenPair;
 			}
 
-			int size = right - left + 1;
-			if (maxPalindrome.length() < size)
-				maxPalindrome = s.substr(left, size);
+			if (maxSize < oddPair.second)
+			{
+				startIdx = oddPair.first;
+				maxSize = oddPair.second;
+			}
 		}
 
-		return maxPalindrome;
+		return s.substr(startIdx, maxSize);
 	}
 
 
