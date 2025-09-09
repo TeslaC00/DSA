@@ -37,17 +37,17 @@ public:
 				std::pair<int, int> evenPair = expandAroundCentre(s, i, i + 1);
 				if (oddPair.second < evenPair.second)
 					oddPair = evenPair;
-			}
+				}
 
 			if (maxSize < oddPair.second)
-			{
+					{
 				startIdx = oddPair.first;
 				maxSize = oddPair.second;
+				}
 			}
-		}
 
 		return s.substr(startIdx, maxSize);
-	}
+		}
 
 
 
