@@ -1,9 +1,10 @@
 #include "LinkedList.hpp"
 #include <iostream>
-#include "leetcode/q4.cpp"
+#include "leetcode/Stack/q4.cpp"
 
 int main()
 {
+	Solution::test();
 	return 0;
 }
 
@@ -23,10 +24,4 @@ static void linkedListTest() {
 	list.removeValue(100);
 	std::cout << "List contains when element is absent " << std::boolalpha << list.contains(100) << " \n";
 	list.print();
-}
-
-static void q4() {
-	Solution sol;
-	double median = sol.findMedianSortedArrays({ 1,2 }, { 3,4 });
-	std::cout << median << std::endl;
 }
